@@ -5,6 +5,7 @@ on:
     tags:
       - '**'
 
+# see https://github.com/docker/build-push-action#usage
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +24,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # The branch or tag name that triggered the workflow run.
+      # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
       - run: echo ${{github.ref_name}}
 
       - name: Build and push
